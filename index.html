@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samson Sinyinza · Software Engineer</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* offset for fixed header */
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #111111;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* ---------- FIXED HEADER ---------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 2px solid #111111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+    .navbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: #111111;
+      text-decoration: none;
+    }
+    .logo span {
+      color: #e63946; /* red accent */
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #111111;
+      font-size: 0.98rem;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover {
+      color: #e63946;
+      border-bottom-color: #e63946;
+    }
+    /* ---------- HERO ---------- */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 120px 0 60px; /* top padding for fixed header */
+      gap: 40px;
+    }
+    .hero-content {
+      flex: 1 1 380px;
+    }
+    .hero-content .badge {
+      display: inline-block;
+      background: #f77f00; /* orange */
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+      letter-spacing: 0.3px;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #111111;
+      margin-bottom: 12px;
+    }
+    .hero-content h1 span {
+      color: #e63946; /* red accent */
+    }
+    .hero-content .subhead {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #333333;
+      margin-bottom: 24px;
+      max-width: 500px;
+    }
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 18px;
+      align-items: center;
+    }
+    .hero-contact a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #111111;
+      font-weight: 500;
+      font-size: 0.98rem;
+      transition: color 0.2s;
+    }
+    .hero-contact a i {
+      color: #2a9d8f; /* green */
+      font-size: 1.1rem;
+    }
+    .hero-contact a:hover {
+      color: #e63946;
+    }
+    .hero-avatar {
+      flex: 0 0 180px;
+      text-align: center;
+    }
+    .avatar-circle {
+      width: 180px;
+      height: 180px;
+      background: #111111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      font-weight: 600;
+      color: #f77f00; /* orange */
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
+      border: 4px solid #2a9d8f; /* green border */
+      transition: transform 0.25s;
+    }
+    .avatar-circle:hover {
+      transform: scale(1.02);
+    }
+    /* ---------- SECTIONS ---------- */
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #111111;
+      margin-bottom: 28px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 60px;
+      height: 4px;
+      background: #e63946; /* red underline */
+      border-radius: 0;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 28px 26px;
+      border: 1px solid #e0e0e0;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transform: translateY(-2px);
+      border-color: #2a9d8f;
+    }
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 12px;
+    }
+    .skill-category h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2a9d8f;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-category h3 i {
+      font-size: 1.1rem;
+      color: #f77f00;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-tag {
+      background: #f5f5f5;
+      padding: 5px 14px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #111111;
+      border-left: 3px solid #2a9d8f;
+    }
+    /* Experience */
+    .exp-item {
+      display: flex;
+      gap: 22px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .exp-icon {
+      width: 52px;
+      height: 52px;
+      background: #111111;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f77f00;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .exp-content {
+      flex: 1;
+    }
+    .exp-content h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #111111;
+      margin-bottom: 4px;
+    }
+    .exp-meta {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #e63946;
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .exp-content ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .exp-content li {
+      padding-left: 22px;
+      position: relative;
+      margin-bottom: 8px;
+      color: #222222;
+      font-size: 0.96rem;
+    }
+    .exp-content li:before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #f77f00;
+      font-weight: 600;
+    }
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .project-card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 24px 22px;
+      border: 1px solid #e0e0e0;
+      transition: all 0.2s;
+      border-top: 4px solid #2a9d8f;
+    }
+    .project-card:hover {
+      border-color: #2a9d8f;
+      background: #fafafa;
+    }
+    .project-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #111111;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .project-card h3 i {
+      color: #f77f00;
+      font-size: 1.2rem;
+    }
+    .project-card p {
+      color: #333333;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .project-tag {
+      background: #f5f5f5;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #111111;
+      border-left: 2px solid #e63946;
+    }
+    /* Education */
+    .edu-card {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-left: 6px solid #2a9d8f;
+    }
+    .edu-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #111111;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .edu-card .edu-meta {
+      color: #e63946;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .distinction-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f77f00;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 3px 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .competencies-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .competency-item {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #111111;
+      border-bottom: 3px solid #e63946;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 48px 0 32px;
+      color: #555555;
+      font-size: 0.9rem;
+      border-top: 2px solid #111111;
+      margin-top: 60px;
+    }
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .footer-contact a {
+      color: #111111;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer-contact a i {
+      color: #2a9d8f;
+      margin-right: 4px;
+    }
+    .footer-contact a:hover {
+      color: #e63946;
+    }
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 700px) {
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 110px 0 40px;
+      }
+      .hero-content .subhead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-contact {
+        justify-content: center;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .navbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+      .distinction-badge {
+        margin-left: 0;
+        margin-top: 4px;
+      }
+      .edu-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .navbar {
+        padding: 12px 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      .avatar-circle {
+        width: 140px;
+        height: 140px;
+        font-size: 3.5rem;
+      }
+      .exp-item {
+        gap: 12px;
+      }
+      .navbar-inner {
+        gap: 8px;
+      }
+      .nav-links a {
+        font-size: 0.9rem;
+      }
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== FIXED HEADER ========== -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="#" class="logo">Samson <span>Sinyinza</span></a>
+      <nav class="nav-links">
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge">Software Engineer</div>
+        <h1>Building practical <span>digital solutions</span> for web, desktop & mobile.</h1>
+        <p class="subhead">Full-stack developer with hands-on experience in Python, Java, C#, Flutter, and cloud deployment. I turn requirements into reliable, tested applications.</p>
+        <div class="hero-contact">
+          <a href="mailto:samsoftsinyinza@gmail.com"><i class="fas fa-envelope"></i> samsoftsinyinza@gmail.com</a>
+          <a href="tel:+260766107099"><i class="fas fa-phone-alt"></i> 0766107099</a>
+          <a href="#"><i class="fas fa-map-marker-alt"></i> Zambia</a>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <div class="avatar-circle">SS</div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL SUMMARY -->
+    <section style="margin: 20px 0 50px;">
+      <div class="card" style="background: #fafafa; border-left: 6px solid #2a9d8f;">
+        <p style="font-size: 1.05rem; color: #111111;"><i class="fas fa-quote-left" style="color: #e63946; margin-right: 8px;"></i> Software Engineer with practical experience developing, testing, deploying, and maintaining web, desktop, and mobile applications. Strong in software testing, debugging, requirements analysis, and developing practical digital solutions.</p>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section id="skills" style="margin-bottom: 60px;">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category card">
+          <h3><i class="fas fa-code"></i> Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C#</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3><i class="fas fa-laptop-code"></i> Development</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Flutter</span>
+            <span class="skill-tag">Android Studio</span>
+            <span class="skill-tag">PyQt5</span>
+            <span class="skill-tag">Tkinter</span>
+            <span class="skill-tag">Unity</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3><i class="fas fa-database"></i> Databases</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">SQL Server</span>
+            <span class="skill-tag">Oracle</span>
+            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">Firebase</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3><i class="fas fa-plug"></i> APIs & Integration</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Web Services</span>
+            <span class="skill-tag">Third-Party APIs</span>
+            <span class="skill-tag">API Testing</span>
+            <span class="skill-tag">Payment Gateway</span>
+            <span class="skill-tag">Lenco</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3><i class="fas fa-tools"></i> Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">Visual Studio</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Render</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3><i class="fas fa-cogs"></i> Software Engineering</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">OOP</span>
+            <span class="skill-tag">SDLC</span>
+            <span class="skill-tag">DB Design</span>
+            <span class="skill-tag">Requirements Analysis</span>
+            <span class="skill-tag">Testing & Debugging</span>
+            <span class="skill-tag">Deployment</span>
+            <span class="skill-tag">UML</span>
+            <span class="skill-tag">Documentation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE -->
+    <section id="experience" style="margin-bottom: 60px;">
+      <h2 class="section-title">Professional Experience</h2>
+
+      <div class="exp-item">
+        <div class="exp-icon"><i class="fas fa-briefcase"></i></div>
+        <div class="exp-content card" style="padding: 22px 26px; border-left: 4px solid #e63946;">
+          <h3>Freelance Software Engineer & IT Consultant</h3>
+          <div class="exp-meta"><span><i class="far fa-calendar-alt"></i> June 2026 – Present</span></div>
+          <ul>
+            <li>Develop and maintain web, desktop, and mobile applications based on client requirements.</li>
+            <li>Develop Python desktop applications using PyQt5 and Tkinter.</li>
+            <li>Develop Flask-based backend applications and deploy them using Render.</li>
+            <li>Design and manage relational and NoSQL database systems.</li>
+            <li>Integrate and test third-party APIs and payment services, including Lenco.</li>
+            <li>Develop digital products, including e-commerce and digital-product platforms.</li>
+            <li>Use Git and GitHub for version control and deployment workflows.</li>
+            <li>Perform requirements analysis, testing, troubleshooting, and system improvements.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-icon"><i class="fas fa-globe"></i></div>
+        <div class="exp-content card" style="padding: 22px 26px; border-left: 4px solid #2a9d8f;">
+          <h3>Web Developer</h3>
+          <div class="exp-meta"><span>No Child Left Behind Foundation Zambia</span> <span><i class="far fa-calendar-alt"></i> June 2026 – July 2026</span></div>
+          <ul>
+            <li>Designed, developed, tested, and deployed the organization's official website.</li>
+            <li>Developed responsive interfaces for desktop and mobile devices.</li>
+            <li>Gathered requirements and translated organizational needs into practical web solutions.</li>
+            <li>Performed maintenance, troubleshooting, testing, and optimization.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-icon"><i class="fas fa-gamepad"></i></div>
+        <div class="exp-content card" style="padding: 22px 26px; border-left: 4px solid #f77f00;">
+          <h3>Game Developer</h3>
+          <div class="exp-meta"><span>Markup Games</span> <span><i class="far fa-calendar-alt"></i> December 2025 – January 2026</span></div>
+          <ul>
+            <li>Developed 3D applications using Unity, C#, and Visual Studio.</li>
+            <li>Optimized applications for WebGL and Android.</li>
+            <li>Implemented interactive features and user interfaces.</li>
+            <li>Managed WebGL build and deployment workflows.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-icon"><i class="fas fa-headset"></i></div>
+        <div class="exp-content card" style="padding: 22px 26px; border-left: 4px solid #111111;">
+          <h3>IT Support Consultant</h3>
+          <div class="exp-meta"><span>Self-Employed</span> <span><i class="far fa-calendar-alt"></i> December 2020 – March 2022</span></div>
+          <ul>
+            <li>Diagnosed and resolved hardware, software, operating system, and application issues.</li>
+            <li>Installed, configured, and maintained computer systems and software.</li>
+            <li>Provided technical support and troubleshooting for individual and small-business clients.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTED PROJECTS -->
+    <section id="projects" style="margin-bottom: 60px;">
+      <h2 class="section-title">Selected Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3><i class="fas fa-shopping-cart"></i> E-Commerce & Digital Product Platform</h3>
+          <p>Developed a digital commerce platform with product, customer, payment, and digital-delivery workflows.</p>
+          <div class="project-tags"><span class="project-tag">Flask</span><span class="project-tag">Payment</span><span class="project-tag">Digital Delivery</span></div>
+        </div>
+        <div class="project-card">
+          <h3><i class="fas fa-credit-card"></i> Lenco Payment Integration</h3>
+          <p>Developed and tested payment workflows using Lenco APIs and transaction processes.</p>
+          <div class="project-tags"><span class="project-tag">Lenco API</span><span class="project-tag">REST</span><span class="project-tag">Testing</span></div>
+        </div>
+        <div class="project-card">
+          <h3><i class="fab fa-git-alt"></i> Python Git Repository Utility</h3>
+          <p>Developed a desktop application for managing Git repositories and version-control operations.</p>
+          <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">PyQt5</span><span class="project-tag">Git</span></div>
+        </div>
+        <div class="project-card">
+          <h3><i class="fas fa-microphone-alt"></i> Python Speech Assistant</h3>
+          <p>Developed a speech assistant using speech recognition and text-to-speech technologies.</p>
+          <div class="project-tags"><span class="project-tag">SpeechRecognition</span><span class="project-tag">TTS</span><span class="project-tag">Python</span></div>
+        </div>
+        <div class="project-card">
+          <h3><i class="fas fa-video"></i> Python Screen Recorder</h3>
+          <p>Built a desktop screen-recording application with a graphical user interface.</p>
+          <div class="project-tags"><span class="project-tag">PyQt5</span><span class="project-tag">OpenCV</span><span class="project-tag">GUI</span></div>
+        </div>
+        <div class="project-card">
+          <h3><i class="fas fa-cloud-upload-alt"></i> Flask Web Applications</h3>
+          <p>Developed and deployed Flask applications with database integration and cloud hosting.</p>
+          <div class="project-tags"><span class="project-tag">Flask</span><span class="project-tag">Render</span><span class="project-tag">PostgreSQL</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & CORE COMPETENCIES -->
+    <section id="education" style="margin-bottom: 40px;">
+      <h2 class="section-title">Education</h2>
+      <div class="card edu-card" style="margin-bottom: 40px;">
+        <div style="flex: 1 1 300px;">
+          <h3>Bachelor of Science in Software Engineering
+            <span class="distinction-badge"><i class="fas fa-award"></i> Distinction</span>
+          </h3>
+          <p style="color: #333333; margin-top: 6px;">Zambia University College of Technology</p>
+        </div>
+        <div class="edu-meta"><i class="far fa-calendar-alt"></i> Feb 2022 – June 2026</div>
+      </div>
+
+      <h2 class="section-title">Core Competencies</h2>
+      <div class="competencies-list">
+        <span class="competency-item">Full-Stack Development</span>
+        <span class="competency-item">Mobile Development</span>
+        <span class="competency-item">Database Development</span>
+        <span class="competency-item">REST APIs</span>
+        <span class="competency-item">Payment Integration</span>
+        <span class="competency-item">Software Testing</span>
+        <span class="competency-item">Debugging</span>
+        <span class="competency-item">Requirements Analysis</span>
+        <span class="competency-item">Application Deployment</span>
+        <span class="competency-item">Technical Troubleshooting</span>
+        <span class="competency-item">Client Communication</span>
+        <span class="competency-item">Digital Product Development</span>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-contact">
+        <a href="mailto:samsoftsinyinza@gmail.com"><i class="fas fa-envelope"></i> samsoftsinyinza@gmail.com</a>
+        <a href="tel:+260766107099"><i class="fas fa-phone-alt"></i> 0766107099</a>
+        <a href="#"><i class="fas fa-map-marker-alt"></i> Zambia</a>
+      </div>
+      <p>© 2026 Samson Sinyinza · Software Engineer</p>
+      <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.7;">Built with <i class="fas fa-heart" style="color: #e63946;"></i> for practical digital solutions.</p>
+    </footer>
+  </div>
+
+  <!-- Smooth scroll (native CSS scroll-behavior handles it; this is a fallback) -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
